@@ -1,0 +1,16 @@
+✔ la ciudad es determinista para una misma semilla
+✔ las vías arteriales cuestan la mitad y todas las calles son de doble sentido
+✔ el tráfico multiplica el costo y devuelve el costo anterior
+✔ Composite: el costo de un viaje es la suma de sus rutas y de sus tramos
+✔ Iterator: agrupa tramos consecutivos en una sola indicación
+✔ Observer: una sesión «affected» ignora tráfico fuera de su ruta y «always» recalcula
+✔ Observer: tras un atasco la nueva ruta no es peor que mantener la anterior
+✔ Command: deshacer y rehacer restauran el viaje
+✔ Proxy + Observer: el tráfico invalida solo las rutas afectadas de la caché
+✔ 2-opt nunca empeora al vecino más cercano y el óptimo nunca empeora a 2-opt (20 casos)
+✔ todas las estrategias visitan cada parada exactamente una vez y parten del origen
+✔ A* y bidireccional encuentran la misma ruta óptima que Dijkstra (300 consultas)
+✔ la ruta devuelta es continua y su costo coincide con la suma de sus calles
+✔ A* expande menos nodos que Dijkstra y la bidireccional también
+✔ el origen igual al destino devuelve ruta vacía de costo cero
+✔ la caché (Proxy) acierta en consultas repetidas

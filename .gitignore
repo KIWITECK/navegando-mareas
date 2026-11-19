@@ -1,2 +1,15 @@
 node_modules/
 .DS_Store
+video/audio/*.wav
+video/out/*.mp4
+video/hf/.hyperframes/
+video/hf/assets/narration.wav
+video/hf/renders/
+video/hf/.thumbnails/
+video/hf/.waveform-cache/
+video/snaps/
+video/snap*/
+video/*.log
+video/hf/AGENTS.md
+video/hf/CLAUDE.md
+entrega/

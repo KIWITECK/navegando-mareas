@@ -1,0 +1,39 @@
+<template>
+  <style>
+  #root { position: absolute; inset: 0; background: #FFFFFF; font-family: Inter, sans-serif; color: #000; overflow: hidden; }
+  .wrap { position: absolute; inset: 0; }
+  .ttl { position: absolute; left: 120px; top: 54px; font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  .abs { position: absolute; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .panel { background: #F7F7F8; border: 1.5px solid #D5D6DB; border-radius: 16px; }
+</style>
+  <div id="root" data-composition-id="criterios" data-width="1920" data-height="1080">
+    <div class="wrap" id="criterios-wrap">
+     <div class="wrap" id="criterios-zoom">
+      <div class="ttl" id="criterios-ttl">Criterios de diseño</div>
+      <div class="abs" data-part="head" style="left:120px; top:175px; width:1680px; display:flex; font-size:26px; font-weight:700"><div style="width:420px">CRITERIO</div><div style="width:640px">QUÉ EXIGE</div><div style="width:620px">MÉTRICA</div></div><div class="abs" data-part="r1" style="left:120px; top:240px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:420px; padding-right:28px"><b>Eficiencia</b></div><div style="width:640px; padding-right:28px">Menos trabajo por consulta</div><div style="width:620px; padding-right:28px">Nodos expandidos y milisegundos</div></div>
+<div class="abs" data-part="r2" style="left:120px; top:370px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:420px; padding-right:28px"><b>Calidad de la ruta</b></div><div style="width:640px; padding-right:28px">Rutas óptimas o casi óptimas</div><div style="width:620px; padding-right:28px">Costo frente a Dijkstra y al óptimo</div></div>
+<div class="abs" data-part="r3" style="left:120px; top:500px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:420px; padding-right:28px"><b>Reactividad</b></div><div style="width:640px; padding-right:28px">Responder al tráfico sin recalcular de más</div><div style="width:620px; padding-right:28px">Recálculos y nodos por evento</div></div>
+<div class="abs" data-part="r4" style="left:120px; top:630px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:420px; padding-right:28px"><b>Extensibilidad</b></div><div style="width:640px; padding-right:28px">Cambiar de algoritmo sin tocar el servicio</div><div style="width:620px; padding-right:28px">Estrategias intercambiables y pruebas</div></div>
+<div class="abs" data-part="r5" style="left:120px; top:760px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:420px; padding-right:28px"><b>Escalabilidad</b></div><div style="width:640px; padding-right:28px">Crecer con el tamaño del mapa</div><div style="width:620px; padding-right:28px">Reducción de nodos de 2.500 a 40.000</div></div>
+     </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    
+  tl.fromTo('#criterios-wrap', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
+  tl.fromTo('#criterios-ttl', { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' }, 0.15);
+  tl.to('#criterios-wrap', { opacity: 0, duration: 0.4, ease: 'power2.in' }, 33.380);
+    
+  const root = '#criterios-wrap';
+  tl.set(root + ' [data-part]', { opacity: 0 }, 0);
+  const cues = [{"t":0.6,"parts":["head","r1","r2"]},{"t":13.05,"parts":["r3"]},{"t":19.16,"parts":["r4"]},{"t":26.78,"parts":["r5"]}];
+  cues.forEach((c) => c.parts.forEach((p, i) => {
+    tl.fromTo(root + ' [data-part="' + p + '"]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, c.t + i * 0.2);
+  }));
+    tl.fromTo('#criterios-zoom', { scale: 1, transformOrigin: '50% 50%' }, { scale: 1.02, duration: 33.78, ease: 'none' }, 0);
+    
+    window.__timelines["criterios"] = tl;
+  </script>
+</template>

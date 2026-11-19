@@ -1,0 +1,39 @@
+<template>
+  <style>
+  #root { position: absolute; inset: 0; background: #FFFFFF; font-family: Inter, sans-serif; color: #000; overflow: hidden; }
+  .wrap { position: absolute; inset: 0; }
+  .ttl { position: absolute; left: 120px; top: 54px; font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  .abs { position: absolute; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .panel { background: #F7F7F8; border: 1.5px solid #D5D6DB; border-radius: 16px; }
+</style>
+  <div id="root" data-composition-id="literatura" data-width="1920" data-height="1080">
+    <div class="wrap" id="literatura-wrap">
+     <div class="wrap" id="literatura-zoom">
+      <div class="ttl" id="literatura-ttl">Estrategias de navegación en la literatura</div>
+      <div class="abs" data-part="head" style="left:120px; top:175px; width:1680px; display:flex; font-size:26px; font-weight:700"><div style="width:520px">TÉCNICA</div><div style="width:760px">IDEA</div><div style="width:400px">REFERENCIA</div></div><div class="abs" data-part="r1" style="left:120px; top:240px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:520px; padding-right:28px"><b>Dijkstra</b></div><div style="width:760px; padding-right:28px">Camino mínimo explorando en círculos desde el origen</div><div style="width:400px; padding-right:28px">Dijkstra (1959)</div></div>
+<div class="abs" data-part="r2" style="left:120px; top:375px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:520px; padding-right:28px"><b>A*</b></div><div style="width:760px; padding-right:28px">Dijkstra guiado por una heurística admisible hacia el destino</div><div style="width:400px; padding-right:28px">Hart et al. (1968)</div></div>
+<div class="abs" data-part="r3" style="left:120px; top:510px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:520px; padding-right:28px"><b>Bidireccional</b></div><div style="width:760px; padding-right:28px">Dos búsquedas, desde el origen y desde el destino, que se encuentran</div><div style="width:400px; padding-right:28px">Pohl (1971)</div></div>
+<div class="abs" data-part="r4" style="left:120px; top:645px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:520px; padding-right:28px"><b>Vecino más cercano y 2-opt</b></div><div style="width:760px; padding-right:28px">Ordenar paradas rápido y mejorarlo invirtiendo tramos</div><div style="width:400px; padding-right:28px">Rosenkrantz et al. (1977); Croes (1958)</div></div>
+<div class="abs" data-part="r5" style="left:120px; top:780px; width:1680px; display:flex; align-items:center; font-size:31px; line-height:1.25"><div style="width:520px; padding-right:28px"><b>Jerarquías y preprocesamiento</b></div><div style="width:760px; padding-right:28px">Aceleración en sistemas reales de mapas; fuera del alcance de este prototipo</div><div style="width:400px; padding-right:28px">Bast et al. (2016)</div></div>
+     </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    
+  tl.fromTo('#literatura-wrap', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
+  tl.fromTo('#literatura-ttl', { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' }, 0.15);
+  tl.to('#literatura-wrap', { opacity: 0, duration: 0.4, ease: 'power2.in' }, 41.420);
+    
+  const root = '#literatura-wrap';
+  tl.set(root + ' [data-part]', { opacity: 0 }, 0);
+  const cues = [{"t":0.6,"parts":["head","r1"]},{"t":7.97,"parts":["r2","r3"]},{"t":18.86,"parts":["r4"]},{"t":27.13,"parts":["r5"]}];
+  cues.forEach((c) => c.parts.forEach((p, i) => {
+    tl.fromTo(root + ' [data-part="' + p + '"]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, c.t + i * 0.2);
+  }));
+    tl.fromTo('#literatura-zoom', { scale: 1, transformOrigin: '50% 50%' }, { scale: 1.02, duration: 41.82, ease: 'none' }, 0);
+    
+    window.__timelines["literatura"] = tl;
+  </script>
+</template>

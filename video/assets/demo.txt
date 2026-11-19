@@ -1,0 +1,5 @@
+Viaje planificado: 4 paradas, costo 96.5, 181 tramos
+Primer tramo: Siga 2 cuadras al oeste → Siga 8 cuadras al sur → Siga 10 cuadras al este → Siga 10 cuadras al sur
+Atasco en la calle 2172: costo 0.5 → 2.5; recálculos: 1
+Nuevo costo del viaje: 96.5
+Tras deshacer (vuelve la ruta anterior, ahora más cara por el atasco): costo 98.5 (historial: 1 comandos)

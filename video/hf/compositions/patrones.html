@@ -1,0 +1,41 @@
+<template>
+  <style>
+  #root { position: absolute; inset: 0; background: #FFFFFF; font-family: Inter, sans-serif; color: #000; overflow: hidden; }
+  .wrap { position: absolute; inset: 0; }
+  .ttl { position: absolute; left: 120px; top: 54px; font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  .abs { position: absolute; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .panel { background: #F7F7F8; border: 1.5px solid #D5D6DB; border-radius: 16px; }
+</style>
+  <div id="root" data-composition-id="patrones" data-width="1920" data-height="1080">
+    <div class="wrap" id="patrones-wrap">
+     <div class="wrap" id="patrones-zoom">
+      <div class="ttl" id="patrones-ttl">Patrones de diseño</div>
+      <div class="abs" data-part="head" style="left:120px; top:175px; width:1680px; display:flex; font-size:26px; font-weight:700"><div style="width:260px">PATRÓN</div><div style="width:520px">PROBLEMA</div><div style="width:460px">APLICACIÓN</div><div style="width:440px">JUSTIFICACIÓN</div></div><div class="abs" data-part="r1" style="left:120px; top:235px; width:1680px; display:flex; align-items:center; font-size:26px; line-height:1.25"><div style="width:260px; padding-right:28px"><b>Strategy</b></div><div style="width:520px; padding-right:28px">Cambiar de algoritmo</div><div style="width:460px; padding-right:28px">Camino y orden de paradas</div><div style="width:440px; padding-right:28px">Comparar técnicas con el mismo servicio</div></div>
+<div class="abs" data-part="r2" style="left:120px; top:343px; width:1680px; display:flex; align-items:center; font-size:26px; line-height:1.25"><div style="width:260px; padding-right:28px"><b>Composite</b></div><div style="width:520px; padding-right:28px">Tramo y ruta se tratan igual</div><div style="width:460px; padding-right:28px">Leg y Route</div><div style="width:440px; padding-right:28px">Costo recursivo del viaje</div></div>
+<div class="abs" data-part="r3" style="left:120px; top:451px; width:1680px; display:flex; align-items:center; font-size:26px; line-height:1.25"><div style="width:260px; padding-right:28px"><b>Iterator</b></div><div style="width:520px; padding-right:28px">Recorrer sin exponer</div><div style="width:460px; padding-right:28px">InstructionIterator</div><div style="width:440px; padding-right:28px">Indicaciones agrupadas y perezosas</div></div>
+<div class="abs" data-part="r4" style="left:120px; top:559px; width:1680px; display:flex; align-items:center; font-size:26px; line-height:1.25"><div style="width:260px; padding-right:28px"><b>Observer</b></div><div style="width:520px; padding-right:28px">Avisar cambios sin acoplar</div><div style="width:460px; padding-right:28px">TrafficFeed, sesión y caché</div><div style="width:440px; padding-right:28px">Replanificar solo si importa</div></div>
+<div class="abs" data-part="r5" style="left:120px; top:667px; width:1680px; display:flex; align-items:center; font-size:26px; line-height:1.25"><div style="width:260px; padding-right:28px"><b>Command</b></div><div style="width:520px; padding-right:28px">Acciones reversibles</div><div style="width:460px; padding-right:28px">Planificar, añadir parada, replanificar</div><div style="width:440px; padding-right:28px">Deshacer y rehacer</div></div>
+<div class="abs" data-part="r6" style="left:120px; top:775px; width:1680px; display:flex; align-items:center; font-size:26px; line-height:1.25"><div style="width:260px; padding-right:28px"><b>Proxy</b></div><div style="width:520px; padding-right:28px">Evitar recálculos</div><div style="width:460px; padding-right:28px">CachedStrategy</div><div style="width:440px; padding-right:28px">Caché con invalidación por calle</div></div>
+<div class="abs" data-part="r7" style="left:120px; top:883px; width:1680px; display:flex; align-items:center; font-size:26px; line-height:1.25"><div style="width:260px; padding-right:28px"><b>Facade</b></div><div style="width:520px; padding-right:28px">Simplificar el uso</div><div style="width:460px; padding-right:28px">NavigationService</div><div style="width:440px; padding-right:28px">API pequeña</div></div>
+     </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    
+  tl.fromTo('#patrones-wrap', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
+  tl.fromTo('#patrones-ttl', { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' }, 0.15);
+  tl.to('#patrones-wrap', { opacity: 0, duration: 0.4, ease: 'power2.in' }, 43.790);
+    
+  const root = '#patrones-wrap';
+  tl.set(root + ' [data-part]', { opacity: 0 }, 0);
+  const cues = [{"t":0.6,"parts":["head","r1"]},{"t":14.14,"parts":["r2","r3"]},{"t":27.42,"parts":["r4","r5"]},{"t":35.88,"parts":["r6","r7"]}];
+  cues.forEach((c) => c.parts.forEach((p, i) => {
+    tl.fromTo(root + ' [data-part="' + p + '"]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, c.t + i * 0.2);
+  }));
+    tl.fromTo('#patrones-zoom', { scale: 1, transformOrigin: '50% 50%' }, { scale: 1.02, duration: 44.19, ease: 'none' }, 0);
+    
+    window.__timelines["patrones"] = tl;
+  </script>
+</template>

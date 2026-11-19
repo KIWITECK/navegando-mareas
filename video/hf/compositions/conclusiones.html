@@ -1,0 +1,38 @@
+<template>
+  <style>
+  #root { position: absolute; inset: 0; background: #FFFFFF; font-family: Inter, sans-serif; color: #000; overflow: hidden; }
+  .wrap { position: absolute; inset: 0; }
+  .ttl { position: absolute; left: 120px; top: 54px; font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  .abs { position: absolute; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .panel { background: #F7F7F8; border: 1.5px solid #D5D6DB; border-radius: 16px; }
+</style>
+  <div id="root" data-composition-id="conclusiones" data-width="1920" data-height="1080">
+    <div class="wrap" id="conclusiones-wrap">
+     <div class="wrap" id="conclusiones-zoom">
+      <div class="ttl" id="conclusiones-ttl">Conclusiones</div>
+      <div class="abs" data-part="k1" style="left:120px; top:190px; width:1680px; font-size:50px; font-weight:500; letter-spacing:-0.01em; line-height:1.25">A* reduce 83 % a 90 % la exploración sin perder optimalidad.</div>
+<div class="abs" data-part="k2" style="left:120px; top:375px; width:1680px; font-size:50px; font-weight:500; letter-spacing:-0.01em; line-height:1.25">Replanificar solo si el tráfico afecta la ruta reduce 94 % los recálculos, con 0,35 % de brecha media.</div>
+<div class="abs" data-part="k3" style="left:120px; top:560px; width:1680px; font-size:50px; font-weight:500; letter-spacing:-0.01em; line-height:1.25">Strategy hizo posible la evaluación; Observer y Command hicieron barata y reversible la reacción al tráfico.</div>
+<div class="abs" data-part="k4" style="left:120px; top:745px; width:1680px; font-size:46px; font-weight:500; letter-spacing:-0.01em; line-height:1.25">Límites: mapa sintético, una sola máquina, tráfico simulado, trabajo individual.</div>
+     </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    
+  tl.fromTo('#conclusiones-wrap', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
+  tl.fromTo('#conclusiones-ttl', { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' }, 0.15);
+  tl.to('#conclusiones-wrap', { opacity: 0, duration: 0.4, ease: 'power2.in' }, 72.250);
+    
+  const root = '#conclusiones-wrap';
+  tl.set(root + ' [data-part]', { opacity: 0 }, 0);
+  const cues = [{"t":0.6,"parts":["k1"]},{"t":11.08,"parts":["k2"]},{"t":21.33,"parts":["k3"]},{"t":30.97,"parts":["k4"]},{"t":47.629999999999995,"parts":[]},{"t":60.83,"parts":[]}];
+  cues.forEach((c) => c.parts.forEach((p, i) => {
+    tl.fromTo(root + ' [data-part="' + p + '"]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, c.t + i * 0.2);
+  }));
+    tl.fromTo('#conclusiones-zoom', { scale: 1, transformOrigin: '50% 50%' }, { scale: 1.02, duration: 72.65, ease: 'none' }, 0);
+    
+    window.__timelines["conclusiones"] = tl;
+  </script>
+</template>

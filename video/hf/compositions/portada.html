@@ -1,0 +1,45 @@
+<template>
+  <style>
+  #root { position: absolute; inset: 0; background: #FFFFFF; font-family: Inter, sans-serif; color: #000; overflow: hidden; }
+  .wrap { position: absolute; inset: 0; }
+  .ttl { position: absolute; left: 120px; top: 54px; font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  .abs { position: absolute; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .panel { background: #F7F7F8; border: 1.5px solid #D5D6DB; border-radius: 16px; }
+</style>
+  <div id="root" data-composition-id="portada" data-width="1920" data-height="1080">
+    <div class="wrap" id="portada-wrap">
+     <div class="wrap" id="portada-zoom">
+      <div class="ttl" id="portada-ttl" style="opacity:0"></div>
+      
+    <div class="abs" data-part="title" style="left:120px; top:200px; width:1560px">
+      <div style="font-size:88px; font-weight:800; letter-spacing:-0.04em; line-height:1.05">Navegación eficiente de rutas con tráfico dinámico</div>
+      <div style="font-size:46px; font-weight:500; margin-top:28px; line-height:1.25; width:1400px">Navegando mareas: estrategias de navegación en la arquitectura de software</div>
+    </div>
+    <div class="abs" data-part="meta" style="left:120px; top:640px; font-size:32px; line-height:1.55; width:1500px">
+      <div style="font-weight:700">David Ricardo Amaya Rojas</div>
+      <div>Tecnológica del Oriente · Arquitectura de Software 20262 - N6 Gr A</div>
+      <div>Unidad 3 · Actividad 6 · Docente: Leydi Johana Polo Amador</div>
+      <div>19 de noviembre de 2026</div>
+    </div>
+     </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    
+  
+  tl.fromTo('#portada-ttl', { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' }, 0.15);
+  tl.to('#portada-wrap', { opacity: 0, duration: 0.4, ease: 'power2.in' }, 39.190);
+    
+  const root = '#portada-wrap';
+  tl.set(root + ' [data-part]', { opacity: 0 }, 0);
+  const cues = [{"t":0.6,"parts":["title"]},{"t":14.59,"parts":["meta"]},{"t":29.08,"parts":[]}];
+  cues.forEach((c) => c.parts.forEach((p, i) => {
+    tl.fromTo(root + ' [data-part="' + p + '"]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, c.t + i * 0.2);
+  }));
+    tl.fromTo('#portada-zoom', { scale: 1, transformOrigin: '50% 50%' }, { scale: 1.02, duration: 39.59, ease: 'none' }, 0);
+    tl.set('#portada-wrap [data-part="title"]', { opacity: 1, y: 0 }, 0.001);
+    window.__timelines["portada"] = tl;
+  </script>
+</template>

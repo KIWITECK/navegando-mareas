@@ -1,0 +1,266 @@
+{
+ "portada-0": {
+  "tts": "Hola, soy David Amaya. Esta es mi presentación de la Actividad seis de la Unidad tres del curso Arquitectura de Software, en la Tecnológica del Oriente: Navegando mareas, estrategias de navegación en la arquitectura de software.",
+  "dur": 13.69
+ },
+ "portada-1": {
+  "tts": "Mi proyecto es un sistema de navegación eficiente de rutas con tráfico dinámico. Voy a mostrar el problema, la arquitectura con sus diagramas UML, los patrones de diseño, el prototipo funcional y los resultados de las pruebas.",
+  "dur": 14.19
+ },
+ "portada-2": {
+  "tts": "Todo el código está en un repositorio público de GitHub, y las cifras que verán salen de ese mismo código, con semillas fijas para que cualquiera pueda reproducirlas.",
+  "dur": 9.71
+ },
+ "problema-0": {
+  "tts": "El problema de navegación que elegí es el de un mensajero que debe visitar varias paradas por una ciudad, cuyas calles cambian de costo según el tráfico.",
+  "dur": 8.55
+ },
+ "problema-1": {
+  "tts": "El sistema debe resolver tres cosas: encontrar el camino más barato entre dos puntos, decidir en qué orden visitar las paradas, y reaccionar cuando el tráfico encarece la ruta que ya está en marcha.",
+  "dur": 11.57
+ },
+ "problema-2": {
+  "tts": "Para poder medir, delimité el problema a una ciudad modelada como cuadrícula, con costo por cuadra, vías arteriales más rápidas y calles bloqueadas, generada con una semilla para que sea reproducible.",
+  "dur": 12.05
+ },
+ "problema-3": {
+  "tts": "Elegí este problema porque reúne las tres dimensiones que evalúa la unidad: el rendimiento del sistema, la experiencia del usuario y la eficiencia operativa, y porque cada una se puede medir con números, no con opiniones.",
+  "dur": 13.04
+ },
+ "relevancia-0": {
+  "tts": "La relevancia es doble. En rendimiento, calcular rutas sin guía explora una porción enorme del mapa: en una ciudad de cuarenta mil nodos, el algoritmo de Dijkstra expande en promedio más de veinte mil nodos por consulta.",
+  "dur": 13.09
+ },
+ "relevancia-1": {
+  "tts": "En eficiencia operativa, si cada cambio de tráfico obliga a recalcular todas las rutas activas, con veinte sesiones y cuatrocientos eventos se hacen ocho mil recálculos.",
+  "dur": 10.77
+ },
+ "relevancia-2": {
+  "tts": "Y en experiencia de usuario, una ruta obsoleta es un retraso que se podía evitar. La planificación de rutas en redes de transporte es un campo consolidado, con técnicas de aceleración específicas, lo que confirma que el problema importa.",
+  "dur": 14.17
+ },
+ "literatura-0": {
+  "tts": "En la literatura encontré cuatro familias de técnicas. Dijkstra halla el camino mínimo explorando en círculos desde el origen.",
+  "dur": 7.07
+ },
+ "literatura-1": {
+  "tts": "A star añade una heurística admisible que orienta la búsqueda hacia el destino sin perder optimalidad. La búsqueda bidireccional explora desde ambos extremos hasta que se encuentran.",
+  "dur": 10.59
+ },
+ "literatura-2": {
+  "tts": "Para ordenar varias paradas, el vecino más cercano es rápido pero impreciso, y la mejora dos opt reduce el recorrido invirtiendo tramos.",
+  "dur": 7.97
+ },
+ "literatura-3": {
+  "tts": "Los sistemas reales combinan estas ideas con preprocesamiento jerárquico. Aquí estudio el núcleo algorítmico y, sobre todo, la arquitectura, que es lo que decide cuánto cambia el código al sustituir una técnica por otra.",
+  "dur": 13.89
+ },
+ "criterios-0": {
+  "tts": "Del análisis derivé cinco criterios de diseño, cada uno con su métrica. Eficiencia, que mido con nodos expandidos y milisegundos. Calidad de la ruta, que mido contra Dijkstra y contra el óptimo.",
+  "dur": 12.15
+ },
+ "criterios-1": {
+  "tts": "Reactividad: responder al tráfico sin recalcular de más, que mido con recálculos y nodos por evento.",
+  "dur": 5.81
+ },
+ "criterios-2": {
+  "tts": "Extensibilidad: poder cambiar de algoritmo sin tocar el servicio, que verifico con estrategias intercambiables y pruebas.",
+  "dur": 7.32
+ },
+ "criterios-3": {
+  "tts": "Y escalabilidad: crecer con el tamaño del mapa, que mido de dos mil quinientos a cuarenta mil nodos.",
+  "dur": 6.2
+ },
+ "componentes-0": {
+  "tts": "Esta es la arquitectura. El cliente usa una fachada, NavigationService, a través de la interfaz INavegar. La fachada oculta las piezas internas y crea sesiones de navegación.",
+  "dur": 11.01
+ },
+ "componentes-1": {
+  "tts": "Cada sesión de navegación observa el tráfico, usa un historial de comandos, un orden de paradas y un camino mínimo, y construye el viaje como una ruta compuesta que se recorre con un iterador.",
+  "dur": 11.89
+ },
+ "componentes-2": {
+  "tts": "El flujo de tráfico es el sujeto: notifica a las sesiones y a la caché de rutas, un proxy que envuelve al camino mínimo. Y el mapa vial es un grafo cuyos pesos cambian con el tráfico.",
+  "dur": 10.53
+ },
+ "componentes-3": {
+  "tts": "Esta separación es lo que da extensibilidad: sustituir el algoritmo de camino, la política de replanificación o la caché es cambiar un componente, no reescribir el servicio.",
+  "dur": 10.4
+ },
+ "secuencia-0": {
+  "tts": "El diagrama de secuencia muestra el flujo. El cliente crea una sesión a través de la fachada y la inicia.",
+  "dur": 5.51
+ },
+ "secuencia-1": {
+  "tts": "La sesión calcula la matriz de costos entre todas las paradas con el camino mínimo, ordena las paradas con la estrategia de orden, y calcula cada tramo.",
+  "dur": 9.47
+ },
+ "secuencia-2": {
+  "tts": "Al final devuelve el viaje compuesto al cliente.",
+  "dur": 3.09
+ },
+ "secuencia-trafico-0": {
+  "tts": "El fragmento opcional modela el evento de tráfico. El flujo de tráfico notifica a la sesión con la actualización.",
+  "dur": 7.13
+ },
+ "secuencia-trafico-1": {
+  "tts": "La sesión comprueba si la calle está en la ruta y si su costo sube. Solo en ese caso ejecuta un comando de replanificación, que vuelve a pedir el camino mínimo y devuelve la nueva ruta al cliente.",
+  "dur": 11.47
+ },
+ "clases-0": {
+  "tts": "El diagrama de clases detalla la lógica interna. PathStrategy es una interfaz con tres implementaciones intercambiables: Dijkstra, A star y bidireccional.",
+  "dur": 9.95
+ },
+ "clases-1": {
+  "tts": "CachedStrategy implementa la misma interfaz que envuelve, y además implementa Observer, para invalidar solo las rutas afectadas cuando cambia el tráfico. TrafficFeed agrega observadores, y NavigationSession es uno de ellos.",
+  "dur": 14.35
+ },
+ "clases-2": {
+  "tts": "RouteComponent es la interfaz común de Leg, el tramo, y Route, que agrega componentes. Command declara ejecutar y deshacer, y CommandHistory agrega comandos con deshacer y rehacer.",
+  "dur": 11.44
+ },
+ "clases-3": {
+  "tts": "La fachada NavigationService configura las estrategias, incluido el orden de paradas, que es otra interfaz con vecino más cercano y dos opt.",
+  "dur": 8.91
+ },
+ "clases-4": {
+  "tts": "Observen que ninguna clase concreta conoce a las demás: dependen de interfaces. Por eso, agregar una cuarta estrategia de camino solo requiere una clase nueva y registrarla.",
+  "dur": 10.46
+ },
+ "actividad-0": {
+  "tts": "El diagrama de actividad recoge el recorrido completo. Se recibe el origen y las paradas, se calcula la matriz de costos, se ordenan las paradas, se calcula cada tramo, se arma el viaje compuesto y se emiten las indicaciones con el iterador.",
+  "dur": 14.93
+ },
+ "actividad-1": {
+  "tts": "Después hay dos decisiones que concentran la optimización: si hay un evento de tráfico y si afecta la ruta vigente. Si la afecta, se replanifica; si no, se ignora.",
+  "dur": 9.51
+ },
+ "actividad-2": {
+  "tts": "El ciclo continúa hasta que se llega al destino.",
+  "dur": 3.03
+ },
+ "actividad-3": {
+  "tts": "Esa estructura hace explícito dónde está el ahorro: en la primera decisión se evita trabajo cuando el tráfico no cambia, y en la segunda, cuando el cambio no afecta a quien viaja.",
+  "dur": 10.05
+ },
+ "patrones-0": {
+  "tts": "Seleccioné siete patrones, cada uno para resolver una necesidad concreta. Strategy, para cambiar de algoritmo sin tocar al cliente: lo uso en el camino mínimo y en el orden de paradas, y es lo que permitió comparar técnicas.",
+  "dur": 13.24
+ },
+ "patrones-1": {
+  "tts": "Composite, para tratar igual un tramo y una ruta compuesta; el costo de un viaje es la suma recursiva de sus partes. Iterator, para recorrer la ruta sin exponer su estructura y generar indicaciones agrupadas.",
+  "dur": 12.98
+ },
+ "patrones-2": {
+  "tts": "Observer, para avisar los cambios de tráfico sin acoplar, y Command, para encapsular acciones reversibles con deshacer y rehacer.",
+  "dur": 8.16
+ },
+ "patrones-3": {
+  "tts": "Proxy, para evitar recálculos con una caché que se invalida por calle, y Facade, para ofrecer una API pequeña al cliente.",
+  "dur": 7.51
+ },
+ "prototipo-0": {
+  "tts": "El prototipo está escrito en JavaScript, con Node punto jota ese, sin dependencias externas, y un módulo por cada pieza de la arquitectura.",
+  "dur": 8.75
+ },
+ "prototipo-1": {
+  "tts": "Esta es una ejecución real de la demostración: planifica un viaje de cuatro paradas, y la primera indicación sale del iterador.",
+  "dur": 7.29
+ },
+ "prototipo-2": {
+  "tts": "Luego publico un atasco en una calle de la ruta. La sesión lo detecta, replanifica una sola vez, y la nueva ruta evita la calle sin costo adicional. Al deshacer, vuelve la ruta anterior, que ahora cuesta más por el atasco.",
+  "dur": 12.98
+ },
+ "prototipo-3": {
+  "tts": "Y estas son las dieciséis pruebas automáticas. Verifican, entre otras cosas, que las tres estrategias devuelven el mismo costo en trescientas consultas aleatorias, que la caché invalida solo lo afectado, y que dos opt nunca empeora al vecino más cercano.",
+  "dur": 15.5
+ },
+ "prototipo-4": {
+  "tts": "La heurística de A star es admisible: la distancia Manhattan multiplicada por el costo mínimo por unidad, que es medio, por las vías arteriales. Como nunca sobreestima, la ruta sigue siendo óptima.",
+  "dur": 11.71
+ },
+ "exploracion-0": {
+  "tts": "Pasemos a los resultados. Esta animación muestra, en el orden real de expansión, los nodos que explora cada estrategia para la misma consulta en un mapa de sesenta por sesenta.",
+  "dur": 10.4
+ },
+ "exploracion-1": {
+  "tts": "Dijkstra explora en círculos y termina con tres mil cuatrocientos cincuenta y siete nodos. La bidireccional explora desde ambos extremos y expande dos mil novecientos noventa y uno.",
+  "dur": 10.83
+ },
+ "exploracion-2": {
+  "tts": "A star, guiado por la heurística, expande solo cuatrocientos dieciséis. Las tres rutas tienen exactamente el mismo costo, cincuenta y uno coma cinco: A star no sacrifica optimalidad.",
+  "dur": 11.51
+ },
+ "exploracion-3": {
+  "tts": "Lo importante no es solo cuánto menos explora A star, sino por qué: la heurística concentra la búsqueda en un corredor hacia el destino, y las vías arteriales aparecen como líneas, porque son las calles que realmente convienen.",
+  "dur": 13.57
+ },
+ "eficiencia-0": {
+  "tts": "Con doscientas consultas por tamaño de mapa, el resultado se sostiene. En un mapa de cincuenta por cincuenta, Dijkstra expande mil doscientos veinticuatro nodos y A star doscientos nueve.",
+  "dur": 11.23
+ },
+ "eficiencia-1": {
+  "tts": "En cien por cien, cinco mil cincuenta y dos contra seiscientos sesenta. Y en doscientos por doscientos, veinte mil cuatrocientos sesenta y cuatro contra dos mil ochenta y tres.",
+  "dur": 10.46
+ },
+ "eficiencia-2": {
+  "tts": "A star reduce los nodos expandidos entre ochenta y tres y noventa por ciento y es de dos coma siete a cinco coma siete veces más rápido, con ventaja creciente al crecer el mapa. En ninguna consulta el costo difirió del de Dijkstra.",
+  "dur": 14.31
+ },
+ "eficiencia-3": {
+  "tts": "Esto responde al criterio de escalabilidad: la ventaja de A star no se queda en una ciudad pequeña, sino que crece con el tamaño del mapa, que es justo cuando más se necesita.",
+  "dur": 10.01
+ },
+ "replanificacion-0": {
+  "tts": "Para la replanificación, simulé veinte sesiones de cinco paradas y cuatrocientos eventos de tráfico, concentrados en calles que las rutas usan, que es el caso más exigente.",
+  "dur": 9.94
+ },
+ "replanificacion-1": {
+  "tts": "Recalcular siempre exige ocho mil replanificaciones y más de ciento setenta millones de nodos expandidos.",
+  "dur": 5.75
+ },
+ "replanificacion-2": {
+  "tts": "Recalcular solo cuando el evento afecta la ruta y su costo sube, con el patrón Observer, hace cuatrocientas noventa y expande diez millones: noventa y cuatro por ciento menos en ambos.",
+  "dur": 10.85
+ },
+ "replanificacion-3": {
+  "tts": "El costo es una brecha media de cero coma treinta y cinco por ciento frente al óptimo recalculado, con un máximo de dos por ciento, porque la política ignora los alivios de tráfico fuera de la ruta. Es una decisión consciente: eficiencia contra una pequeña calidad.",
+  "dur": 16.56
+ },
+ "paradas-cache-0": {
+  "tts": "Con ocho paradas y cuarenta instancias, el vecino más cercano queda seis por ciento por encima del óptimo, y hasta treinta y uno en el peor caso. Dos opt baja la brecha media a cero coma setenta y uno por ciento.",
+  "dur": 12.95
+ },
+ "paradas-cache-1": {
+  "tts": "La fuerza bruta es óptima, pero tarda cuatro milisegundos por instancia, y crece factorialmente con las paradas.",
+  "dur": 6.17
+ },
+ "paradas-cache-2": {
+  "tts": "La caché de rutas, el proxy con invalidación por calle, evitó treinta por ciento de la exploración, y mantuvo veintinueve por ciento incluso con tráfico en marcha, porque el Observer invalida solo lo afectado.",
+  "dur": 12.49
+ },
+ "conclusiones-0": {
+  "tts": "Concluyo. La decisión más rentable fue sustituir Dijkstra por A star, que reduce entre ochenta y tres y noventa por ciento la exploración sin perder optimalidad.",
+  "dur": 10.18
+ },
+ "conclusiones-1": {
+  "tts": "La segunda fue replanificar solo cuando el tráfico afecta la ruta: noventa y cuatro por ciento menos recálculos, con cero coma treinta y cinco por ciento de pérdida media.",
+  "dur": 9.95
+ },
+ "conclusiones-2": {
+  "tts": "Los patrones no fueron decorativos: Strategy hizo posible la evaluación, y Observer y Command hicieron barata y reversible la reacción al tráfico.",
+  "dur": 9.34
+ },
+ "conclusiones-3": {
+  "tts": "Los límites son claros: el mapa es sintético, la medición se hizo en una sola máquina, el tráfico es simulado, y el trabajo lo realicé yo solo, aunque la actividad propone equipos. Como trabajo futuro, validar con calles reales e incorporar técnicas jerárquicas.",
+  "dur": 16.36
+ },
+ "conclusiones-4": {
+  "tts": "Si tuviera que resumir el aprendizaje: la arquitectura no es un adorno, es lo que permite medir, cambiar y mejorar con evidencia. Cada mejora que vieron aquí se pudo probar porque el diseño ya separaba las decisiones.",
+  "dur": 12.9
+ },
+ "conclusiones-5": {
+  "tts": "Gracias por su atención. El informe, con los diagramas y las fuentes, y el código fuente en GitHub, están en la plataforma institucional.",
+  "dur": 8.02
+ }
+}
