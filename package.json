@@ -1,0 +1,15 @@
+{
+  "name": "navegando-mareas",
+  "version": "1.0.0",
+  "description": "Prototipo de navegación eficiente (rutas con tráfico dinámico) para la Unidad 3 de Arquitectura de Software.",
+  "type": "module",
+  "author": "David Ricardo Amaya Rojas",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "demo": "node bench/demo.js",
+    "test": "node --test test/graph.test.js test/strategies.test.js test/patterns.test.js test/stops.test.js",
+    "bench": "node bench/run.js",
+    "viz": "node bench/visualize.js"
+  }
+}
