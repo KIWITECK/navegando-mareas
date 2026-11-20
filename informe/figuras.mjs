@@ -149,7 +149,7 @@ export function fig4() {
   const A = (x, y, w, h, color, label) => box(x, y, w, h, color, label.split('\n'), { size: 10.5, title: false, rx: 14 });
   const dec = (cx, cy, label, c = 'butter') => `<path d="M${cx} ${cy - 19} L${cx + 40} ${cy} L${cx} ${cy + 19} L${cx - 40} ${cy} Z" fill="${C[c][0]}" stroke="${C[c][1]}" stroke-width="1.1"/>` + text(cx, cy + 3.5, label, { size: 9.5 });
   let b = '';
-  b += `<circle cx="150" cy="14" r="8" fill="${INK}"/>`;
+  b += P('flujo') + `<circle cx="150" cy="14" r="8" fill="${INK}"/>`;
   b += arrow('M150 22 V36', { id });
   b += A(60, 36, 180, 30, 'blue', 'Recibir origen y paradas');
   b += arrow('M150 66 V84', { id });
@@ -161,7 +161,7 @@ export function fig4() {
   b += arrow('M150 240 V258', { id });
   b += A(60, 258, 180, 30, 'mint', 'Emitir indicaciones (Iterator)');
   b += arrow('M150 288 V302', { id });
-  b += dec(150, 321, '¿Evento de tráfico?');
+  b += P('evento') + dec(150, 321, '¿Evento de tráfico?');
   // sí → derecha
   b += arrow('M190 321 H330', { id }) + text(262, 314, 'sí', { size: 10, halo: 1 });
   b += dec(370, 321, '¿Afecta la ruta?');
@@ -173,7 +173,7 @@ export function fig4() {
   b += A(470, 306, 130, 30, 'gray', 'Ignorar evento');
   b += arrow('M535 306 V275', { id });
   // no hay evento → ¿llegó?
-  b += arrow('M150 340 V362', { id }) + text(158, 354, 'no', { size: 10, anchor: 'start', halo: 1 });
+  b += P('fin') + arrow('M150 340 V362', { id }) + text(158, 354, 'no', { size: 10, anchor: 'start', halo: 1 });
   b += dec(150, 381, '¿Llegó al destino?');
   b += arrow('M110 381 H40 V275 H58', { id }) + text(76, 374, 'no', { size: 10, halo: 1 });
   b += arrow('M150 400 V416', { id }) + text(158, 412, 'sí', { size: 10, anchor: 'start', halo: 1 });
